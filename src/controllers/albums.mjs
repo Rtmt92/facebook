@@ -1,12 +1,7 @@
 import AlbumModel from '../models/album.mjs';
 import PhotoModel from '../models/photo.mjs';
 
-/**
- * @swagger
- * tags:
- *   name: Albums
- *   description: Gestion des albums photos liés aux événements
- */
+
 const Albums = class Albums {
   constructor(app, connect) {
     this.app = app;
@@ -15,13 +10,7 @@ const Albums = class Albums {
     this.run();
   }
 
-  /**
-   * @swagger
-   * /album:
-   *   post:
-   *     summary: Créer un album photo pour un événement
-   *     tags: [Albums]
-   */
+
   createAlbum() {
     this.app.post('/album', async (req, res) => {
       try {
@@ -34,15 +23,9 @@ const Albums = class Albums {
     });
   }
 
-  /**
-   * @swagger
-   * /album:
-   *   get:
-   *     summary: Récupérer tous les albums
-   *     tags: [Albums]
-   */
+
   getAllAlbums() {
-    this.app.get('/album', async (req, res) => {
+    this.app.get('/albums', async (req, res) => {
       const albums = await this.AlbumModel.find()
         .populate('event', 'name')
         .populate('createdBy', 'firstname lastname');
@@ -50,13 +33,7 @@ const Albums = class Albums {
     });
   }
 
-  /**
-   * @swagger
-   * /album/{id}/photos:
-   *   get:
-   *     summary: Récupérer les photos d’un album
-   *     tags: [Albums]
-   */
+
   getPhotosByAlbum() {
     this.app.get('/album/:id/photos', async (req, res) => {
       try {

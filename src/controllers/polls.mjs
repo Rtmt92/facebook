@@ -3,12 +3,6 @@ import QuestionModel from '../models/question.mjs';
 import AnswerModel from '../models/answer.mjs';
 import VoteModel from '../models/vote.mjs';
 
-/**
- * @swagger
- * tags:
- *   name: Polls
- *   description: Gestion des sondages pour les événements
- */
 const Polls = class Polls {
   constructor(app, connect) {
     this.app = app;
@@ -19,13 +13,6 @@ const Polls = class Polls {
     this.run();
   }
 
-  /**
-   * @swagger
-   * /event/{id}/poll:
-   *   post:
-   *     summary: Créer un sondage pour un événement
-   *     tags: [Polls]
-   */
   createPoll() {
     this.app.post('/event/:id/poll', async (req, res) => {
       try {
@@ -43,13 +30,6 @@ const Polls = class Polls {
     });
   }
 
-  /**
-   * @swagger
-   * /poll/{id}/question:
-   *   post:
-   *     summary: Ajouter une question à un sondage
-   *     tags: [Polls]
-   */
   addQuestion() {
     this.app.post('/poll/:id/question', async (req, res) => {
       try {
@@ -65,13 +45,7 @@ const Polls = class Polls {
     });
   }
 
-  /**
-   * @swagger
-   * /question/{id}/answer:
-   *   post:
-   *     summary: Ajouter une réponse possible à une question
-   *     tags: [Polls]
-   */
+
   addAnswer() {
     this.app.post('/question/:id/answer', async (req, res) => {
       try {
@@ -87,13 +61,6 @@ const Polls = class Polls {
     });
   }
 
-  /**
-   * @swagger
-   * /question/{id}/vote:
-   *   post:
-   *     summary: Voter pour une réponse
-   *     tags: [Polls]
-   */
   addVote() {
     this.app.post('/question/:id/vote', async (req, res) => {
       try {
@@ -118,13 +85,6 @@ const Polls = class Polls {
     });
   }
 
-  /**
-   * @swagger
-   * /poll/{id}/results:
-   *   get:
-   *     summary: Voir les résultats d’un sondage
-   *     tags: [Polls]
-   */
   getResults() {
     this.app.get('/poll/:id/results', async (req, res) => {
       try {

@@ -4,8 +4,7 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import cors from 'cors';
 import helmet from 'helmet';
-import swaggerUi from 'swagger-ui-express';
-import swaggerJsdoc from 'swagger-jsdoc';
+
 import config from './config.mjs';
 import routes from './controllers/routes.mjs';
 
@@ -55,30 +54,13 @@ const Server = class Server {
     });
   }
 
-  swaggerDocs() {
-  const options = {
-    definition: {
-      openapi: '3.0.0',
-      info: {
-        title: 'My Social Networks API',
-        version: '1.0.0',
-        description: 'API REST Node.js / Express / MongoDB par Rayan TOUMERT'
-      }
-    },
-    apis: ['./src/controllers/*.mjs']
-  };
 
-  const specs = swaggerJsdoc(options);
-  this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
-  console.log('[DOCS] Swagger disponible sur http://localhost:3000/api-docs');
-}
 
   async run() {
     try {
       await this.dbConnect();
       this.security();
       this.middleware();
-      this.swaggerDocs();
       this.routes();
 
       this.app.listen(this.config.port, () => {

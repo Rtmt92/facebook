@@ -1,12 +1,7 @@
 import ThreadModel from '../models/thread.mjs';
 import MessageModel from '../models/message.mjs';
 
-/**
- * @swagger
- * tags:
- *   name: Threads
- *   description: Gestion des fils de discussion (Groupes / Événements)
- */
+
 const Threads = class Threads {
   constructor(app, connect) {
     this.app = app;
@@ -15,13 +10,6 @@ const Threads = class Threads {
     this.run();
   }
 
-  /**
-   * @swagger
-   * /thread:
-   *   post:
-   *     summary: Créer un nouveau fil de discussion
-   *     tags: [Threads]
-   */
   createThread() {
     this.app.post('/thread', async (req, res) => {
       try {
@@ -34,15 +22,8 @@ const Threads = class Threads {
     });
   }
 
-  /**
-   * @swagger
-   * /thread:
-   *   get:
-   *     summary: Récupérer tous les fils de discussion
-   *     tags: [Threads]
-   */
   getAllThreads() {
-    this.app.get('/thread', async (req, res) => {
+    this.app.get('/threads', async (req, res) => {
       try {
         const threads = await this.ThreadModel.find()
           .populate('group', 'name')
@@ -55,13 +36,6 @@ const Threads = class Threads {
     });
   }
 
-  /**
-   * @swagger
-   * /thread/{id}/messages:
-   *   get:
-   *     summary: Récupérer tous les messages d’un fil de discussion
-   *     tags: [Threads]
-   */
   getMessagesByThread() {
     this.app.get('/thread/:id/messages', async (req, res) => {
       try {
@@ -75,13 +49,6 @@ const Threads = class Threads {
     });
   }
 
-  /**
-   * @swagger
-   * /thread/{id}/message:
-   *   post:
-   *     summary: Envoyer un message dans un fil de discussion
-   *     tags: [Threads]
-   */
   addMessage() {
     this.app.post('/thread/:id/message', async (req, res) => {
       try {
@@ -101,13 +68,6 @@ const Threads = class Threads {
     });
   }
 
-  /**
-   * @swagger
-   * /message/{id}:
-   *   delete:
-   *     summary: Supprimer un message
-   *     tags: [Threads]
-   */
   deleteMessage() {
     this.app.delete('/message/:id', async (req, res) => {
       try {

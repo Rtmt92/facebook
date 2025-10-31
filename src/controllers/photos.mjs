@@ -1,12 +1,6 @@
 import PhotoModel from '../models/photo.mjs';
 import CommentModel from '../models/comment.mjs';
 
-/**
- * @swagger
- * tags:
- *   name: Photos
- *   description: Gestion des photos d’un album
- */
 const Photos = class Photos {
   constructor(app, connect) {
     this.app = app;
@@ -15,13 +9,6 @@ const Photos = class Photos {
     this.run();
   }
 
-  /**
-   * @swagger
-   * /album/{id}/photo:
-   *   post:
-   *     summary: Ajouter une photo dans un album
-   *     tags: [Photos]
-   */
   addPhoto() {
     this.app.post('/album/:id/photo', async (req, res) => {
       try {
@@ -40,13 +27,6 @@ const Photos = class Photos {
     });
   }
 
-  /**
-   * @swagger
-   * /photo/{id}/comments:
-   *   get:
-   *     summary: Voir les commentaires d’une photo
-   *     tags: [Photos]
-   */
   getComments() {
     this.app.get('/photo/:id/comments', async (req, res) => {
       const comments = await this.CommentModel.find({ photo: req.params.id })

@@ -7,64 +7,7 @@ const Events = class Events {
     this.run();
   }
 
-  /**
-   * @swagger
-   * /event:
-   *   post:
-   *     summary: Créer un nouvel événement
-   *     description: Crée un événement avec ses informations principales.
-   *     tags: [Events]
-   *     requestBody:
-   *       required: true
-   *       content:
-   *         application/json:
-   *           schema:
-   *             type: object
-   *             required:
-   *               - name
-   *               - startDate
-   *               - endDate
-   *               - location
-   *             properties:
-   *               name:
-   *                 type: string
-   *                 example: Conférence IA 2025
-   *               description:
-   *                 type: string
-   *                 example: Une conférence sur l'intelligence artificielle et les innovations.
-   *               startDate:
-   *                 type: string
-   *                 format: date-time
-   *                 example: 2025-11-05T09:00:00Z
-   *               endDate:
-   *                 type: string
-   *                 format: date-time
-   *                 example: 2025-11-05T18:00:00Z
-   *               location:
-   *                 type: string
-   *                 example: EFREI Paris
-   *               coverPhoto:
-   *                 type: string
-   *                 example: ai_event.jpg
-   *               isPrivate:
-   *                 type: boolean
-   *                 example: false
-   *               organizers:
-   *                 type: array
-   *                 items:
-   *                   type: string
-   *                   example: 671f91b4b1a2c32f44d8a7e1
-   *               participants:
-   *                 type: array
-   *                 items:
-   *                   type: string
-   *                   example: 671f91b4b1a2c32f44d8a7e9
-   *     responses:
-   *       201:
-   *         description: Événement créé avec succès
-   *       400:
-   *         description: Données invalides
-   */
+
   create() {
     this.app.post('/event', async (req, res) => {
       try {
@@ -78,19 +21,6 @@ const Events = class Events {
     });
   }
 
-  /**
-   * @swagger
-   * /events:
-   *   get:
-   *     summary: Récupérer tous les événements
-   *     description: Retourne la liste complète des événements enregistrés.
-   *     tags: [Events]
-   *     responses:
-   *       200:
-   *         description: Liste des événements
-   *       500:
-   *         description: Erreur interne du serveur
-   */
   getAll() {
     this.app.get('/events', async (req, res) => {
       try {
@@ -104,27 +34,7 @@ const Events = class Events {
     });
   }
 
-  /**
-   * @swagger
-   * /event/{id}:
-   *   get:
-   *     summary: Récupérer un événement par ID
-   *     description: Retourne les informations d’un événement spécifique.
-   *     tags: [Events]
-   *     parameters:
-   *       - name: id
-   *         in: path
-   *         required: true
-   *         description: ID de l'événement
-   *         schema:
-   *           type: string
-   *           example: 671f91b4b1a2c32f44d8a7f2
-   *     responses:
-   *       200:
-   *         description: Événement trouvé
-   *       404:
-   *         description: Événement introuvable
-   */
+
   getById() {
     this.app.get('/event/:id', async (req, res) => {
       try {
@@ -143,26 +53,7 @@ const Events = class Events {
     });
   }
 
-  /**
-   * @swagger
-   * /event/{id}:
-   *   delete:
-   *     summary: Supprimer un événement
-   *     description: Supprime un événement existant à partir de son ID.
-   *     tags: [Events]
-   *     parameters:
-   *       - name: id
-   *         in: path
-   *         required: true
-   *         description: ID de l'événement
-   *         schema:
-   *           type: string
-   *     responses:
-   *       200:
-   *         description: Événement supprimé avec succès
-   *       500:
-   *         description: Erreur interne du serveur
-   */
+
   deleteById() {
     this.app.delete('/event/:id', async (req, res) => {
       try {
@@ -174,38 +65,7 @@ const Events = class Events {
     });
   }
 
-  /**
-   * @swagger
-   * /event/{id}/addParticipant:
-   *   patch:
-   *     summary: Ajouter un participant à un événement
-   *     description: Ajoute un utilisateur existant à la liste des participants d’un événement.
-   *     tags: [Events]
-   *     parameters:
-   *       - name: id
-   *         in: path
-   *         required: true
-   *         description: ID de l'événement
-   *         schema:
-   *           type: string
-   *     requestBody:
-   *       required: true
-   *       content:
-   *         application/json:
-   *           schema:
-   *             type: object
-   *             required:
-   *               - userId
-   *             properties:
-   *               userId:
-   *                 type: string
-   *                 example: 671f91b4b1a2c32f44d8a7e9
-   *     responses:
-   *       200:
-   *         description: Participant ajouté
-   *       404:
-   *         description: Événement introuvable
-   */
+
   addParticipant() {
     this.app.patch('/event/:id/addParticipant', async (req, res) => {
       try {
@@ -226,38 +86,7 @@ const Events = class Events {
     });
   }
 
-  /**
-   * @swagger
-   * /event/{id}/removeParticipant:
-   *   patch:
-   *     summary: Supprimer un participant d’un événement
-   *     description: Retire un utilisateur de la liste des participants d’un événement.
-   *     tags: [Events]
-   *     parameters:
-   *       - name: id
-   *         in: path
-   *         required: true
-   *         description: ID de l'événement
-   *         schema:
-   *           type: string
-   *     requestBody:
-   *       required: true
-   *       content:
-   *         application/json:
-   *           schema:
-   *             type: object
-   *             required:
-   *               - userId
-   *             properties:
-   *               userId:
-   *                 type: string
-   *                 example: 671f91b4b1a2c32f44d8a7e9
-   *     responses:
-   *       200:
-   *         description: Participant supprimé
-   *       404:
-   *         description: Événement introuvable
-   */
+
   removeParticipant() {
     this.app.patch('/event/:id/removeParticipant', async (req, res) => {
       try {

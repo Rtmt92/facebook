@@ -1,11 +1,6 @@
 import CommentModel from '../models/comment.mjs';
 
-/**
- * @swagger
- * tags:
- *   name: Comments
- *   description: Gestion des commentaires sur les photos
- */
+
 const Comments = class Comments {
   constructor(app, connect) {
     this.app = app;
@@ -13,13 +8,6 @@ const Comments = class Comments {
     this.run();
   }
 
-  /**
-   * @swagger
-   * /photo/{id}/comment:
-   *   post:
-   *     summary: Ajouter un commentaire à une photo
-   *     tags: [Comments]
-   */
   addComment() {
     this.app.post('/photo/:id/comment', async (req, res) => {
       try {
