@@ -62,7 +62,7 @@ const Server = class Server {
       info: {
         title: 'My Social Networks API',
         version: '1.0.0',
-        description: 'API REST Node.js / Express / MongoDB par Ervin Goby'
+        description: 'API REST Node.js / Express / MongoDB par Rayan TOUMERT'
       }
     },
     apis: ['./src/controllers/*.mjs']

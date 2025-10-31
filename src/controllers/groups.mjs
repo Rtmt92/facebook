@@ -120,7 +120,7 @@ const Groups = class Groups {
   /**
    * @swagger
    * /group/{id}/addMember:
-   *   put:
+   *   patch:
    *     summary: Ajouter un membre au groupe
    *     tags: [Groups]
    *     parameters:
@@ -144,7 +144,7 @@ const Groups = class Groups {
    *         description: Membre ajouté avec succès
    */
   addMember() {
-    this.app.put('/group/:id/addMember', async (req, res) => {
+    this.app.patch('/group/:id/addMember', async (req, res) => {
       try {
         const { userId } = req.body;
         const group = await this.GroupModel.findById(req.params.id);
@@ -165,12 +165,12 @@ const Groups = class Groups {
   /**
    * @swagger
    * /group/{id}/removeMember:
-   *   put:
+   *   patch:
    *     summary: Retirer un membre du groupe
    *     tags: [Groups]
    */
   removeMember() {
-    this.app.put('/group/:id/removeMember', async (req, res) => {
+    this.app.patch('/group/:id/removeMember', async (req, res) => {
       try {
         const { userId } = req.body;
         const group = await this.GroupModel.findById(req.params.id);

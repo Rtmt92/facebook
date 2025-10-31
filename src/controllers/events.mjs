@@ -177,7 +177,7 @@ const Events = class Events {
   /**
    * @swagger
    * /event/{id}/addParticipant:
-   *   put:
+   *   patch:
    *     summary: Ajouter un participant à un événement
    *     description: Ajoute un utilisateur existant à la liste des participants d’un événement.
    *     tags: [Events]
@@ -207,7 +207,7 @@ const Events = class Events {
    *         description: Événement introuvable
    */
   addParticipant() {
-    this.app.put('/event/:id/addParticipant', async (req, res) => {
+    this.app.patch('/event/:id/addParticipant', async (req, res) => {
       try {
         const { userId } = req.body;
         const event = await this.EventModel.findById(req.params.id);
@@ -229,7 +229,7 @@ const Events = class Events {
   /**
    * @swagger
    * /event/{id}/removeParticipant:
-   *   put:
+   *   patch:
    *     summary: Supprimer un participant d’un événement
    *     description: Retire un utilisateur de la liste des participants d’un événement.
    *     tags: [Events]
@@ -259,7 +259,7 @@ const Events = class Events {
    *         description: Événement introuvable
    */
   removeParticipant() {
-    this.app.put('/event/:id/removeParticipant', async (req, res) => {
+    this.app.patch('/event/:id/removeParticipant', async (req, res) => {
       try {
         const { userId } = req.body;
         const event = await this.EventModel.findById(req.params.id);
