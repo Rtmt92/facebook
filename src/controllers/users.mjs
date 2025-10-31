@@ -27,13 +27,13 @@ const Users = class Users {
    *             properties:
    *               firstname:
    *                 type: string
-   *                 example: Ervin
+   *                 example: Rayan
    *               lastname:
    *                 type: string
-   *                 example: Goby
+   *                 example: TOUMERT
    *               email:
    *                 type: string
-   *                 example: ervin@example.com
+   *                 example: Rayan@123.com
    *               age:
    *                 type: integer
    *                 example: 20

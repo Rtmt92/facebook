@@ -111,13 +111,13 @@ const Tickets = class Tickets {
    *             properties:
    *               firstName:
    *                 type: string
-   *                 example: Ervin
+   *                 example: Rayan
    *               lastName:
    *                 type: string
-   *                 example: Goby
+   *                 example: TOUMERT
    *               address:
    *                 type: string
-   *                 example: 12 rue des Fleurs, Paris
+   *                 example: 14 villa des Fleurs, Paris
    *     responses:
    *       201:
    *         description: Billet acheté avec succès

@@ -9,7 +9,7 @@
     "prod": "node index.mjs production",
     "lint": "npx eslint ./src/**/*.mjs"
   },
-  "author": "Ervin Goby",
+  "author": "Rayan TOUMERT",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.2",
